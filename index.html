@@ -487,12 +487,14 @@
 
                 return html`
                                 <div key=${student.id} onClick=${() => setSelectedStudent(student)}
-                                    className="bg-white rounded-2xl p-4 poke-shadow cursor-pointer hover:-translate-y-1 transition-transform border-2 border-transparent hover:border-blue-400 flex flex-col items-center">
+                                    className="relative bg-white rounded-2xl p-4 poke-shadow cursor-pointer hover:-translate-y-1 transition-transform border-2 border-transparent hover:border-blue-400 flex flex-col items-center">
+                                    
+                                    ${student.feedableEnergy > 0 && html`
+                                        <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-bounce z-10">!</span>
+                                    `}
+
                                     <div className="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mb-3 overflow-hidden border-4 border-blue-100 relative">
                                         ${imageUrl ? html`<img src=${imageUrl} alt=${poke?.mainName} className="w-full h-full object-cover" />` : html`<div className="text-gray-400">?</div>`}
-                                        ${student.feedableEnergy > 0 && html`
-                                            <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-bounce">!</span>
-                                        `}
                                     </div>
                                     <h2 className="text-xl font-black text-gray-800">${student.name}</h2>
                                     <div className="flex flex-col items-center">
